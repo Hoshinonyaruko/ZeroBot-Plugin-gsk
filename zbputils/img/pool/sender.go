@@ -30,7 +30,8 @@ func SendImageFromPool(imgname, imgpath string, genimg func() error, send ctxext
 	}
 	// 发送图片
 	img := message.Image(m.String())
-	id := send(message.Message{img})
+	str := message.Text(" ") // gensokyo的md只能图文
+	id := send(message.Message{img, str})
 	if id == 0 {
 		id = send(message.Message{img.Add("cache", "0")})
 		if id == 0 {
